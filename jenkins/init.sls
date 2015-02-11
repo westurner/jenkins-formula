@@ -24,6 +24,7 @@ jenkins_user:
       - group: jenkins_group
 
 jenkins:
+  {% if grains['os_family'] in ['RedHat', 'Debian'] %}
   pkgrepo.managed:
     - humanname: Jenkins upstream package repository
     {% if grains['os_family'] == 'RedHat' %}
@@ -33,10 +34,11 @@ jenkins:
     - name: deb http://pkg.jenkins-ci.org/debian binary/
     - key_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
     {% endif %}
+    - require_in: 
+      - pkg: jenkins
+  {% endif %}
   pkg.latest:
     - refresh: True
-    - require:
-      - pkgrepo: jenkins
   service.running:
     - enable: True
     - watch:

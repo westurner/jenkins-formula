@@ -1,17 +1,26 @@
 jenkins
 =======
 
-jenkins
--------
+Available states
+================
+
+.. contents::
+    :local:
+
+``jenkins``
+-----------
 
 Install jenkins from the source package repositories and start it up.
 
-jenkins.nginx
--------------
+``jenkins.nginx``
+-----------------
 
 Add a jenkins nginx entry. 
 
-pillar customizations available:
+Pillar customizations:
+==========================
+
+.. code-block:: yaml
 
     jenkins:
       port: 8090
